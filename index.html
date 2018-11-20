@@ -1,0 +1,35 @@
+---
+layout: default
+title: Home
+---
+<div class="posts">
+    {% for post in paginator.posts %}
+    <div class="row">
+	<article class="post">
+	    <h2 class="post-title">
+		<a href="{{ site.baseurl }}{{ post.url }}">
+		    {{ post.title }}
+		</a>
+	    </h2>
+	    
+	    <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">{{ post.date | date_to_string }}</time>
+	    
+	    {{ post.excerpt }}
+	    <small><a href ="{{ site.baseurl }}{{ post.url }}"> Keep Reading .. </a></small>
+	</article>
+    </div>
+    <div class="row"></div>
+    {% endfor %}
+</div>
+<div class="pagination">
+    {% if paginator.next_page %}
+    <a class="btn pagination-item older" href="{{ paginator.next_page_path | prepend: site.baseurl }}">Older</a>
+    {% else %}
+    <a class="btn pagination-item older disbaled" href="{{ paginator.next_page_path | prepend: site.baseurl }}">Older</a>
+    {% endif %}
+    {% if paginator.previous_page %}
+    <a class="btn pagination-item newer" href="{{ paginator.previous_page_path | prepend: site.baseurl }}">Newer</a>
+    {% else %}
+    <span class="btn pagination-item newer disabled">Newer</span>
+    {% endif %}
+</div>
